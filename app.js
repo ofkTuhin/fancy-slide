@@ -50,19 +50,26 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  console.log(element)
-  // element.classList.toggle('added');
+  // select Item for bonus
+  let selectItem=document.getElementById('selectItem').value
+  const items=parseFloat(selectItem)
+
   element.classList.toggle('added');
- 
  
   let item = sliders.indexOf(img);
   if (item === -1) {
-    sliders.push(img);
-  } else {
-   
-    // console.log(sliders)
     
+    sliders.push(img);
+    selectItem=items+1
+  document.getElementById('selectItem').value=selectItem
+
+    
+  } 
+  else {
+  
       sliders = sliders.filter(itemSlide => itemSlide.indexOf(img));
+      selectItem=items-1
+      document.getElementById('selectItem').value=selectItem
     
   }
 }
@@ -86,7 +93,7 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('doration').value || 1000 ;
+  const duration = document.getElementById('duration').value || 1000 ;
   
 
   sliders.forEach(slide => {
@@ -160,7 +167,7 @@ search.addEventListener("keypress", function(event) {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
-
+// Adding loading spinner fore bonus
 const showLoading=()=>{
   const spiner=document.getElementById('spiner')
   spiner.classList.toggle('d-none')
