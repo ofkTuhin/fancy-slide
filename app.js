@@ -141,6 +141,14 @@ searchBtn.addEventListener('click', function () {
   sliders.length = 0;
 })
 
+
+
+search.addEventListener("keypress", function(event) {
+    
+    if (event.keyCode == 13)
+    searchBtn.click();
+});
+
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
