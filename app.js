@@ -43,14 +43,19 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
- let result= element.classList
+  console.log(element)
+  // element.classList.toggle('added');
+  element.classList.toggle('added');
  
  
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
   } else {
-    alert('Hey, Already added !')
+   
+    // console.log(sliders)
+    
+      sliders = sliders.filter(itemSlide => itemSlide.indexOf(img));
     
   }
 }
@@ -74,7 +79,7 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('doration').value ;
+  const duration = document.getElementById('doration').value || 1000 ;
   
 
   sliders.forEach(slide => {
@@ -88,9 +93,6 @@ const createSlider = () => {
   changeSlide(0)
 
   const durationValue=time=>{
-    
-
-    
     const durationTime=Math.abs(time)
     timer = setInterval(function () {
           slideIndex++;
